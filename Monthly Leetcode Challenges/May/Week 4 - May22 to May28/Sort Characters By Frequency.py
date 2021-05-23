@@ -24,7 +24,7 @@ Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
 Note that 'A' and 'a' are treated as two different characters.
 """
 class Solution:
-    def frequencySort(s: str) -> str:
+    def frequencySort(self, s: str) -> str:
 
         d = {}
 
