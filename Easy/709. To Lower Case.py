@@ -27,6 +27,10 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
+
+        """
+        OLD SOLUTION
+        
         asc = []
         for i in s:
             asc.append(ord(i))
@@ -40,4 +44,15 @@ class Solution(object):
                 lower += chr(asc[index])
             index = index + 1
         
+        return lower
+        """
+
+        #optimized runtime solution
+        lower = ''
+        for i in s:
+            if ord(i) <= 90 and ord(i) >= 65:
+                lower += chr(ord(i) + 32)
+            else:
+                lower += i
+                
         return lower
