@@ -39,34 +39,23 @@ def validMountainArray(arr):
             return False
         
         if arr[0] > arr[1]:
-            return False
-        
-        increasing = True
-        i = 0
-        changes = 0
-        while i < len(arr) - 1:
-            if changes > 1:
                 return False
-            
-            if increasing == True:
+
+        i = 0
+        dec = False
+        while dec != True and i < len(arr) - 1:
                 if arr[i] < arr[i+1]:
-                    i += 1
+                        i += 1
                 elif arr[i] > arr[i+1]:
-                    increasing = False
-                    i += 1
-                    changes += 1
+                        dec = True
+                        i+= 1
                 else:
-                    return False
-            
-            else:
-                if arr[i] < arr[i+1]:
-                    increasing = True
-                    i += 1
-                    changes += 1
-                elif arr[i] > arr[i+1]:
-                    i += 1
+                        return False
+
+        for number in arr[i:]:
+                if number < arr[i-1]:
+                        i += 1
                 else:
-                    return False
-                    
-                
-        return (increasing == False) and (changes == 1)
+                        return False
+
+        return True
