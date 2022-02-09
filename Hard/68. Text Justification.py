@@ -43,7 +43,8 @@ Output:
   "acknowledgment  ",
   "shall be        "
 ]
-Explanation: Note that the last line is "shall be    " instead of "shall     be", because the last line must be left-justified instead of fully-justified.
+Explanation: Note that the last line is "shall be    " instead of "shall     be", because the last
+line must be left-justified instead of fully-justified.
 Note that the second line is also left-justified becase it contains only one word.
 """
 
@@ -53,16 +54,6 @@ def fullJustify(words, maxWidth):
     :type maxWidth: int
     :rtype: List[str]
     """
-    #determine how many lines we will need
-    characters = 0
-    for word in words:
-        for ch in word:
-            characters += 1
-        characters += 1
-
-    characters = characters - 1
-    lines = math.ceil(characters/maxWidth)
-
     #our output of lines
     output = []
 
@@ -71,13 +62,13 @@ def fullJustify(words, maxWidth):
     chars = 0
     line = ''
     while i < len(words):
-        if len(line) + len(words[i]) + 1 <= maxWidth:
+        if len(line) + len(words[i]) <= maxWidth:
             line += words[i] + ' '
             i += 1
         else:
             line = line[:-1] #takes out the space at the end
             lineWords = line.split()
-            spaces = maxWidth - len(line.replace(' ', ''))
+            spaces = maxWidth - len(line.replace(' ', ''))  # characters left to fill
             
             #if we can distribute the spaces evenly
             if spaces % 2 == 0:
@@ -93,8 +84,23 @@ def fullJustify(words, maxWidth):
                     
                 output.append(justifiedLine)
 
+            #deal with the case of non even space distribution
             else:
-                output.append(line)
+                justifiedLine = ''
+                #i know how many spaces i need. I know how many words i have...
+                index = 0
+                numberOfSpaces = len(lineWords) - 1  #this represents the number of spaces in the line.. as in there are 2 spaces between 3 words
+                while index < len(lineWords):       
+                    if index == len(lineWords) - 1:         #if we are on the last word, just add the word to the line. no need for spaces
+                        justifiedLine += lineWords[index]   
+                    else:
+                        justifiedLine += lineWords[index] + (' ' * math.ceil(spaces/numberOfSpaces))    #add the word to the line AND the ceiling value of characters/number of spaces. (if there are 9 characters between 2 words, then we need 5 whitespaces (more first). then 4
+                        spaces -= math.ceil(spaces/numberOfSpaces)      #update the number of characters left to fill
+                        numberOfSpaces -= 1
+
+                    index += 1
+                        
+                output.append(justifiedLine)
                 
             #move on to the next line    
             line = words[i] + ' '
