@@ -69,6 +69,11 @@ def fullJustify(words, maxWidth):
             line = line[:-1] #takes out the space at the end
             lineWords = line.split()
             spaces = maxWidth - len(line.replace(' ', ''))  # characters left to fill
+
+            #if there is only 1 word then left-justify it
+            if len(lineWords) == 1:
+                spaces = maxWidth - len(line)
+                output.append(line + (' ' * spaces))
             
             #if we can distribute the spaces evenly
             if spaces % 2 == 0:
