@@ -68,6 +68,7 @@ def fullJustify(words, maxWidth):
         else:
             line = line[:-1] #takes out the space at the end
             lineWords = line.split()
+            #print(lineWords)
             spaces = maxWidth - len(line.replace(' ', ''))  # characters left to fill
 
             #if there is only 1 word then left-justify it
@@ -76,7 +77,7 @@ def fullJustify(words, maxWidth):
                 output.append(line + (' ' * spaces))
             
             #if we can distribute the spaces evenly
-            if spaces % 2 == 0:
+            elif spaces % (len(lineWords) - 1) == 0:
                 evenly = int(spaces / (len(lineWords) - 1))
                 justifiedLine = ''
                 index = 0
@@ -113,8 +114,10 @@ def fullJustify(words, maxWidth):
 
     #handles the left justification for the last line
     spaces = maxWidth - len(line)
-    output.append(line + (' ' * spaces))
+    output.append((line + (' ' * spaces))[:maxWidth])
     
     return output
         
 words = ["This", "is", "an", "example", "of", "text", "justification."]
+words1 = ["What","must","be","acknowledgment","shall","be"]
+words2 = ["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"]
