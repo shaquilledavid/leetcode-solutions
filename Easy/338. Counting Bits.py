@@ -27,7 +27,6 @@ class Solution:
         
         return ans
         
-
         
 def countOnes(number):
     count = 0
@@ -35,3 +34,12 @@ def countOnes(number):
         if i == '1':
             count += 1
     return count
+
+
+
+def countBitsOnePass(self, n: int) -> List[int]:
+        ans = []
+        for number in range(0, n+1):
+            ans.append((str(bin(number))).count('1'))
+        
+        return ans
