@@ -32,43 +32,44 @@ def numRescueBoats(people, limit):
     :rtype: int
     
     """
-    boats = 0 
-    index = 0 
-    spacesInCurrentBoat = 0
-    capacity = 0
+
+    #new approach -> sort, check if person == limit. if they are, assign them a new boat. 
+    #otherwise, check if the complement of that person is in the list. if they are, assign two to a boat,
+    #otherwise, take next smallest person.
     
     people.sort()
     people.reverse()
     
+    boats = 0
+    index = 0
     while index < len(people):
         if people[index] == limit:
             boats += 1
             index += 1
         
-        elif index == (len(people) - 1) and capacity == 0:
-            boats += 1
-            index += 1
-        
         else:
-            j = index + 1
-            spacesInCurrentBoat = 1
-            capacity = people[index]
-            while j < len(people) and spacesInCurrentBoat < 2:
-                #case 2
-                if capacity + people[j] <= limit:
-                    capacity += people[j]
-                    #remove that person so we dont encounter them again
-                    people.remove(people[j])
-                    spacesInCurrentBoat += 1
+            complement = limit - people[index]
+            if complement in people:
+                people.remove(complement)
+                index += 1
+                boats += 1
+            
+            else:
+                #take the next smallest int from complement
+                while complement > 0:
+                    complement -= 1
+                    if complement in people:
+                        people.remove(complement)
+                        boats += 1
+                        index += 1
+                        break
                 
-                else:
-                    j += 1
-                
-            boats += 1
-            index += 1
-            capacity = 0
-            spacesInCurrentBoat = 0
-    
+                #if that loop fully goes through and there is no person available to match, give the man his own boat    
+                if complement == 0: 
+                    boats += 1
+                    index += 1
     
     return boats
+
+    
     
