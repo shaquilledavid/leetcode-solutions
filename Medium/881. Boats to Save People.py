@@ -32,43 +32,26 @@ def numRescueBoats(people, limit):
     :rtype: int
     
     """
-
-    #new approach -> sort, check if person == limit. if they are, assign them a new boat. 
-    #otherwise, check if the complement of that person is in the list. if they are, assign two to a boat,
-    #otherwise, take next smallest person.
+    #approach here is to sort the list. then we pair the high weighing person with the low weighing person
+    #if the high weight person can't be paired with anyone, he needs his own boat.
     
     people.sort()
-    people.reverse()
-    
     boats = 0
-    index = 0
-    while index < len(people):
-        if people[index] == limit:
+    start = 0
+    end = len(people) - 1
+    
+    while start <= end:
+        #case 1 where the pair is <= limit, add a boat and move on
+        if people[start] + people[end] <= limit:
             boats += 1
-            index += 1
+            start += 1
+            end -= 1
         
         else:
-            complement = limit - people[index]
-            if complement in people:
-                people.remove(complement)
-                index += 1
-                boats += 1
-            
-            else:
-                #take the next smallest int from complement
-                while complement > 0:
-                    complement -= 1
-                    if complement in people:
-                        people.remove(complement)
-                        boats += 1
-                        index += 1
-                        break
-                
-                #if that loop fully goes through and there is no person available to match, give the man his own boat    
-                if complement == 0: 
-                    boats += 1
-                    index += 1
-    
+            #otherwise high is going to need their own boat
+            boats += 1
+            end -= 1
+        
     return boats
 
     
