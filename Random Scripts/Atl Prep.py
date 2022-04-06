@@ -41,4 +41,24 @@ def reduceTheNumber(numberString, k):
     if k > len(numberString):
         return numberString
 
-    num_array = numberString.split
+    while len(numberString) > k:
+        numberString = groupAndSum(numberString, k)
+
+    return numberString
+
+
+def groupAndSum(numstring, k):
+    groups = []
+    i = 0
+    while i < len(numstring):
+        groups.append(numstring[i:i+k])
+        i += k
+
+    s = ''
+    for group in groups:
+        num = 0
+        for digit in group:
+            num += int(digit)
+        s+= str(num)
+
+    return s
