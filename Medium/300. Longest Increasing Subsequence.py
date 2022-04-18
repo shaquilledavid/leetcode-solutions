@@ -71,3 +71,17 @@ def allBigger(num, arr):
 
 
 nums = [10,9,2,5,3,7,101,18]
+
+
+
+
+def DFSlengthOfLIS(nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    dfs = [1] * len(nums)
+
+    
+
+    
