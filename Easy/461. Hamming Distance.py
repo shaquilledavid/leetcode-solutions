@@ -4,7 +4,6 @@ The Hamming distance between two integers is the number of positions at which th
 
 Given two integers x and y, return the Hamming distance between them.
 
- 
 
 Example 1:
 
@@ -26,7 +25,7 @@ Constraints:
 0 <= x, y <= 231 - 1
 """
 
-def hammingDistance(self, x, y):
+def hammingDistance(x, y):
     """
     :type x: int
     :type y: int
