@@ -140,3 +140,37 @@ def binarySearch(array, number):
 
 ################################################################################
 
+def find_first(array, num):
+    """
+    Returns the index at which the number num first appears in the input array
+
+    >>> find_first([200, 200, 200, 200, 500, 500, 500])
+    4
+    """
+
+
+    #we know that the array is sorted so we can use binary search to our advantage
+    #to find the FIRST occurence of a num, we need to continue searching the left side of when we find an occurence
+
+    begin = 0
+    end = len(array) - 1
+    index = -1
+
+    while begin < end:
+        mid = begin + math.floor((end-begin)/2)
+
+        if array[mid] == num:
+            #update the index
+            index = mid
+            end = mid
+            continue
+
+        elif array[mid] < num:
+            begin = mid + 1
+            continue
+
+        elif array[mid] > num:
+            end = mid
+            continue
+
+    return index
