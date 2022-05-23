@@ -174,3 +174,19 @@ def find_first(array, num):
             continue
 
     return index
+
+def sortArray(array):
+    greater = []
+    startNum = min(array)
+
+    for num in array:
+        if num == startNum:
+            greater.append(array.pop(array.index(num)))
+            print("array = " + str(array) + " greater = " + str(greater))
+
+    while len(array) > 0:
+        minIndex = array.index(min(array))
+        greater.append(array.pop(minIndex))
+        
+
+    return greater[1:]
