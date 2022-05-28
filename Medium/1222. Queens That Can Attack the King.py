@@ -29,6 +29,8 @@ Input: queens = [[5,6],[7,7],[2,1],[0,7],[1,6],[5,1],[3,7],[0,3],[4,0],[1,2],[6,
 Output: [[2,3],[1,4],[1,6],[3,7],[4,3],[5,4],[4,5]]
 """
 
+#took inspiration from this approach https://www.youtube.com/watch?v=YfpcVAe9tdo
+
 def queensAttacktheKing(queens, king):
     """
     :type queens: List[List[int]]
