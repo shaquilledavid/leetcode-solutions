@@ -28,31 +28,30 @@ def maxProduct(words):
     :type words: List[str]
     :rtype: int
     """
-    max = 0
+    current_product = 0
+    max_product = 0
+    
     i = 0
-    j = 1
-    sort = sorted(words, key=len)
-    sort.reverse()
-
-    while i < len(sort):
-        while j < len(sort):
-            if len(sort[i])*len(sort[j]) > max and distinct(sort[i], sort[j]) == True:
-                max = len(sort[i])*len(sort[j])
-                j += 1
-            else:
-                j += 1
-        i += 1
+    
+    while i < len(words):
         j = i + 1
+        while j < len(words):
+            if noCommonality(words[i], words[j]) == True:
+                prod = len(words[i]) * len(words[j])
+                if prod > max_product:
+                    max_product = prod
+            
+            j += 1
+        i += 1
+    
+    return max_product
+    
 
-    return max
-
-
-def distinct(word1, word2):
-    w1letters = [letter for letter in word1]
-    for l in word2:
-        if l in w1letters:
+def noCommonality(word1, word2):
+    for letter in word1:
+        if letter in word2:
             return False
-        
+    
     return True
 
 
