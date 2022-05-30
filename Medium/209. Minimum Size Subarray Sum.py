@@ -71,5 +71,4 @@ def minSubArrayLen(target, nums):
         currentLength = len(nums[L:R+1])
             
     
-    
     return 0 if minLength == float('inf') else minLength
