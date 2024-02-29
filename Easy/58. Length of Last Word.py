@@ -38,4 +38,36 @@ class Solution(object):
                 return len(lst[-1])
             else:
                 return 0
+
+
         
+def lengthOfLastWord2(self, s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    #base case
+    if len(s) == 0:
+        return 0
+
+    #traversing the string from the back
+    index = len(s) - 1
+    lengthOfLastWord = 0
+
+    #while traversing string backwards
+    while index > -1:
+        #use case 1: we encounter a char right away -> +1 to length and move to next char
+            #we encounter another space, then break and return length
+        if s[index].isalpha():
+            lengthOfLastWord += 1
+            if s[index-1] == ' ' or index == 0:
+                break
+            index -= 1
+
+        #use case 2: we encounter a space
+            #traverse backwards until the first letter, then begin count
+            #in event that we have no characters, return 0 
+        elif s[index] == ' ':
+            index -= 1
+            
+    return lengthOfLastWord
