@@ -51,3 +51,32 @@ def isValid(s: str) -> bool:
                 return False
 
     return len(running) == 0
+
+
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        if len(s) == 1:
+            return False
+
+        opened = '' 
+
+        pairs = {')': '(', ']': '[', '}': '{'}
+        openBrackets = ['(', '[', '{']
+
+        #iterate through the string
+
+        for char in s:
+            if char in openBrackets:
+                opened+=char
+            else:
+                #if last index of opened is the matching bracket to what we are on now, remove from opened, and move on
+                if len(opened) >= 1 and opened[-1] == pairs[char]:
+                    opened = opened[:-1]
+                else:
+                    return False
+        
+        return opened == ''
