@@ -31,12 +31,17 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        
-        
-        i = 0
+        #make a hashmap of nums[i] and its index
+        #iterate over nums, add the num:index into the hashmap
+        #however, if we've already come across the number that'll reach target, return current index and composite index
+        d = {}
+
+        i = 0 
         while i < len(nums):
-            comp = target - nums[i]
-            if comp in nums and nums.index(comp) != i:
-                return [i, nums.index(comp)]
+            composite = target - nums[i]
+            if composite in d:
+                return [i, d[composite]]
+            
             else:
-                i = i + 1
+                d[nums[i]] = i
+                i += 1
