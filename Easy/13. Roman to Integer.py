@@ -9,19 +9,14 @@ def romanToInt(self, s):
 
     total = 0
     i = 0
-    j = 1
     while i < len(s):
-        if (j < len(s)) and (((s[j] == 'V' or s[j] == 'X') and s[i] == 'I') or ((s[j] == 'L' or s[j] == 'C') and s[i] == 'X') or ((s[j] == 'D' or s[j] == 'M') and s[i] == 'C')):
-            sub = d[s[j]] - d[s[i]]
+        if (i+1 < len(s)) and d[s[i]] < d[s[i+1]]:
+            sub = d[s[i+1]] - d[s[i]]
             total += sub
-            print(total)
             i += 2
-            j += 2
 
         else:
             total += d[s[i]]
-            print(total)
             i += 1
-            j += 1
             
     return total
